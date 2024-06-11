@@ -45,8 +45,9 @@ public class Main {
         UC2_RollDice();
         UC3_CheckOptions();
         System.out.println("Game Play: ");
+        int winPoints=100;
         int start=0;
-        while (start!=100){
+        while (start!=winPoints){
             start=CalculateValue(start);
         }
         System.out.println("Player Won the game");
