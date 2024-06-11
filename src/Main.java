@@ -46,10 +46,13 @@ public class Main {
         UC3_CheckOptions();
         System.out.println("Game Play: ");
         int winPoints=100;
-        int start=0;
+        int start=0,c=0;
         while (start!=winPoints){
             start=CalculateValue(start);
+            System.out.printf("Position: %d\n",start);
+            c++;
         }
+        System.out.printf("Number of dice rolls: %d\n",c);
         System.out.println("Player Won the game");
     }
 }
