@@ -1,5 +1,4 @@
 import java.util.Random;
-import java.util.Vector;
 
 public class Main {
     static Random random = new Random();
@@ -24,7 +23,8 @@ public class Main {
         else if (i==2) System.out.println("Case: Ladder");
         else System.out.println("Case: Snake");
     }
-    private static int CalculateValue(int start){
+    private static int CheckPos(int start){
+        int pos=start;
         int i=RollDice();
         int option=CheckOption();
         switch (option){
@@ -39,12 +39,17 @@ public class Main {
         }
         return 0;
     }
-    public static void main(String[] args) {
+    private static int CalculateValue(int start){
+        int option=CheckOption();
 
-        System.out.println("Welcome to Snake and Ladder Game");
-        UC2_RollDice();
-        UC3_CheckOptions();
-        System.out.println("Game Play: ");
+        if (option==2){
+            start=CheckPos(start);
+            start=CheckPos(start);
+        }
+        start=CheckPos(start);
+        return start;
+    }
+    private static void UC6_DiceRollFreqAndPos(){
         int winPoints=100;
         int start=0,c=0;
         while (start!=winPoints){
@@ -52,7 +57,31 @@ public class Main {
             System.out.printf("Position: %d\n",start);
             c++;
         }
-        System.out.printf("Number of dice rolls: %d\n",c);
-        System.out.println("Player Won the game");
+        System.out.printf("Dice Roles : %d\n",c);
+    }
+    private static int PlayGame(){
+        int winPoints=100;
+        int start=0,c=0;
+        while (start!=winPoints){
+            start=CalculateValue(start);
+            c++;
+        }
+        return c;
+    }
+    private static void UC7_PlayGame(){
+        int player1=PlayGame();
+        int player2=PlayGame();
+        if (player1>player2) System.out.println("Player 2 Won the game");
+        else if(player1<player2) System.out.println("Player 1 won the game");
+        else System.out.println("Its a tie");
+    }
+    public static void main(String[] args) {
+
+        System.out.println("Welcome to Snake and Ladder Game");
+        UC2_RollDice();
+        UC3_CheckOptions();
+        System.out.println("Game Play: ");
+        UC6_DiceRollFreqAndPos();
+        UC7_PlayGame();
     }
 }
